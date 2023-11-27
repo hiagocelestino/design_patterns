@@ -71,8 +71,7 @@ class DescontoQuantidadeItens(Desconto):
         if carrinho.qtd_itens() > 10:
             desconto_em_reais = 10
             carrinho.add_desconto(desconto_em_reais)
-        
-        if self.prox_desconto:
+        else:
             return super().chama_prox(carrinho)
 
 
@@ -82,8 +81,7 @@ class DescontoProdutoEspecial(Desconto):
         if any(item.produto_especial for item in carrinho.itens):
             desconto_em_reais = 5
             carrinho.add_desconto(desconto_em_reais)
-
-        if self.prox_desconto:
+        else:
             return super().chama_prox(carrinho)
 
 
@@ -93,10 +91,8 @@ class DescontoValorTotal(Desconto):
         if carrinho.valor > 200:
             desconto_em_reais = 2
             carrinho.add_desconto(desconto_em_reais)
-        
-        if self.prox_desconto:
+        else:
             return super().chama_prox(carrinho)
-
 
 if __name__ == '__main__':
     carrinho = Carrinho()
